@@ -33,6 +33,25 @@
             
         }
     ],
+	"subPackages": [
+		{
+			"root": "subpkg",
+			"pages": [
+				{
+					"path": "good_details/good_details"
+				}
+			    ,{
+                    "path" : "goods_list/goods_list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+		}
+	],
 	"tabBar": {
 		"selectedColor": "#C00000",
 		"list": [
