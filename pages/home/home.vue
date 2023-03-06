@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view class="search" @click="gotoSearchPage">
+			<text>搜索</text>
+		</view>
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 			<swiper-item v-for="(item, i) in swiperList" :key="i">
 				<navigator class="swiper-item" :url="'/subpkg/good_details/good_details?goods_id=' + item.goods_id">
@@ -41,7 +44,6 @@
 			};
 		},
 		onLoad() {
-
 			this.getSwiperList()
 			this.getNavList()
 			this.getFloorList()
@@ -49,30 +51,29 @@
 		methods: {
 			async getSwiperList() {
 				const {data: res} = await uni.$http.get('/api/public/v1/home/swiperdata');
-				this.swiperList = res.message;
 				if(res.meta.status !== 200) {
 					return uni.$showMessage({ title: '请求数据失败' })
 				}
+				this.swiperList = res.message;
 			},
 			async getNavList() {
 				const { data: res } = await uni.$http.get('/api/public/v1/home/catitems');
-				console.log(res, 'data')
-				this.navList = res.message;
 				if(res.meta.status !== 200) {
 					return uni.$showMessage({ title: '请求数据失败' })
 				}
+				this.navList = res.message;
 			},
 			async getFloorList() {
 				const { data: res } = await uni.$http.get('/api/public/v1/home/floordata');
+				if(res.meta.status !== 200) {
+					return uni.$showMessage({ title: '请求数据失败' })
+				}
 				res.message.forEach((floor) => {
 					floor.product_list.forEach((prod) => {
 						prod.url = '/subpkg/goods_list/goods_list?' + prod.navigator_url.split('?')[1]; 
 					})
 				})
 				this.floorList = res.message;
-				if(res.meta.status !== 200) {
-					return uni.$showMessage({ title: '请求数据失败' })
-				}
 			},
 			navHandlerClick(item) {
 				if(item.name === '分类') {
@@ -81,14 +82,28 @@
 					})
 				}
 			},
-			flootHandlerClick(item) {
-				
+			gotoSearchPage() {
+				uni.navigateTo({
+					url: '/subpkg/search/search'
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+.search {
+	margin: 5px auto;
+	width: 90%;
+	background-color: rgba(234, 234, 234, 1.0);
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100px;
+	color: rgba(164, 164, 164, 1.0);
+	font-size: 14px;
+}
 swiper {
 	height: 330rpx;
 	.swiper-item, image {

@@ -24,6 +24,18 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.search {
+  margin: 5px auto;
+  width: 90%;
+  background-color: #eaeaea;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  color: #a4a4a4;
+  font-size: 14px;
+}
 swiper {
   height: 330rpx;
 }
