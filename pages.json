@@ -32,15 +32,6 @@
             }
             
         }
-        ,{
-            "path" : "my-goods/my-goods",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
     ],
 	"subPackages": [
 		{

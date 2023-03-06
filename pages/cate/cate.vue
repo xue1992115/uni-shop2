@@ -24,7 +24,9 @@
 </template>
 
 <script>
+	import badgeMix from "@/mixins/tabbar-badge.js";
 	export default {
+		mixins: [badgeMix],
 		data() {
 			return {
 				wh: 0,
@@ -58,6 +60,9 @@
 					url: '/subpkg/goods_list/goods_list?cid=' + item.cat_id
 				})
 			}
+		},
+		onShow() {
+			this.setBadge()
 		}
 	}
 </script>

@@ -2,14 +2,20 @@
 	<view>
 		<view class="goods-list">
 			<block v-for="goods, index in goodsList" :key="index">
-				<my-goods :goods="goods "></my-goods>
+				<view @click="gotoGoodsDetail(goods)">
+					<my-goods :goods="goods"></my-goods>
+				</view>
 			</block>
 		</view>
 	</view>
 </template>
 
 <script>
+	import myGoods from '../../components/my-goods/my-goods.vue';
 	export default {
+		components: {
+			myGoods
+		},
 		data() {
 			return {
 				goodsList: [],
@@ -35,6 +41,11 @@
 				this.goodsList = res.message.goods;
 				this.total = res.message.total;
 			},
+			gotoGoodsDetail(item) {
+				uni.navigateTo({
+					url: '/subpkg/good_details/good_details?goods_id=' + item.goods_id
+				})
+			}
 		},
 		onLoad(options) {
 			this.queryObj.query = options.query || '';
