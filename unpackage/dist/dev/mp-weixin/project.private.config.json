@@ -40,6 +40,13 @@
         },
         {
           "name": "",
+          "pathName": "pages/my/my",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
           "pathName": "pages/cart/cart",
           "query": "",
           "launchMode": "default",
